@@ -26,10 +26,13 @@ body {
   margin-bottom: 20px;
 }
 
+/* Container for the Yes/No buttons. Use flex to line them up side by side. */
 .buttons {
   margin-top: 20px;
-  position: relative;
-  height: 60px; /* Enough height to allow button movement */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 button {
@@ -53,10 +56,6 @@ button:active {
 #no-btn {
   background-color: #f44336;
   color: #fff;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 /* Styling for the yes page */
