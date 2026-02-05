@@ -55,16 +55,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add your photo file names here once you've uploaded them to the images folder.
   // These images will be displayed around the central card with random sizes, rotations and opacity.
   const photoSources = [
-    'images/photo1.jpg',
-    'images/photo2.jpg',
-    'images/photo3.jpg',
-    'images/photo4.jpg',
-    'images/photo5.jpg',
-    'images/photo6.jpg',
-    'images/photo7.jpg',
-    'images/photo8.jpg',
-    'images/photo9.jpg',
-    'images/photo10.jpg'
+    'images/photo1.jpeg',
+    'images/photo2.jpeg',
+    'images/photo3.jpeg',
+    'images/photo4.jpeg',
+    'images/photo5.jpeg',
+    'images/photo6.jpeg',
+    'images/photo7.jpeg',
+    'images/photo8.jpeg',
+    'images/photo9.jpeg',
+    'images/photo10.jpeg'
   ];
   // Utility function to generate a random number within a range
   const randomRange = (min, max) => Math.random() * (max - min) + min;
