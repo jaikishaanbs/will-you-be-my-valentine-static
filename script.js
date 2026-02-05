@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'But :*(',
     'I am going to die',
     'Yep I\'m dead',
-    "ok ur talking to nathan's ghost",
+    "ok ur talking to JK's ghost",
     'please babe',
     ':((((',
     'PRETTY PLEASE',
