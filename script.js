@@ -49,4 +49,35 @@ document.addEventListener('DOMContentLoaded', () => {
   yesBtn.addEventListener('click', () => {
     window.location.href = 'yes.html';
   });
+
+  // Dynamically add polaroid-style photos around the central container.
+  const photoContainer = document.getElementById('photo-container');
+  // Add your photo file names here once you've uploaded them to the images folder.
+  // These images will be displayed around the central card with random sizes, rotations and opacity.
+  const photoSources = [
+    'images/photo1.jpg',
+    'images/photo2.jpg',
+    'images/photo3.jpg',
+    'images/photo4.jpg'
+  ];
+  // Utility function to generate a random number within a range
+  const randomRange = (min, max) => Math.random() * (max - min) + min;
+  photoSources.forEach(src => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = '';
+    // Randomly place images in corners (top/bottom and left/right) so they don't cover the central card
+    const top = Math.random() < 0.5 ? randomRange(0, 20) : randomRange(70, 90);
+    const left = Math.random() < 0.5 ? randomRange(0, 20) : randomRange(70, 90);
+    const size = randomRange(80, 160); // width and height between 80px and 160px
+    const opacity = randomRange(0.5, 1); // opacity between 0.5 and 1
+    const rotation = randomRange(-15, 15); // rotation between -15 and 15 degrees
+    img.style.top = `${top}%`;
+    img.style.left = `${left}%`;
+    img.style.width = `${size}px`;
+    img.style.height = `${size}px`;
+    img.style.opacity = opacity;
+    img.style.transform = `rotate(${rotation}deg)`;
+    photoContainer.appendChild(img);
+  });
 });
