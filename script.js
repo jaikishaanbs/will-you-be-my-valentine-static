@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'But :*(',
     'I am going to die',
     'Yep I\'m dead',
-    "ok ur talking to JK's ghost",
+    "ok ur talking to nathan's ghost",
     'please babe',
     ':((((',
     'PRETTY PLEASE',
@@ -68,15 +68,43 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
   // Utility function to generate a random number within a range
   const randomRange = (min, max) => Math.random() * (max - min) + min;
-  photoSources.forEach(src => {
+
+  /*
+   * To better distribute the polaroid photos around the page and avoid bunching
+   * in the corners, define a set of base positions around the edges of the
+   * viewport. Each entry defines a top and left percentage. When creating
+   * photos, we'll pick the corresponding base position based on its index
+   * and then add a small random offset (±5%) so the layout still feels
+   * organic. This prevents the images from overlapping the central card
+   * while spacing them more evenly around the perimeter.
+   */
+  const basePositions = [
+    { top: 5, left: 5 },    // upper left corner
+    { top: 5, left: 50 },   // top centre
+    { top: 5, left: 85 },   // upper right corner
+    { top: 50, left: 5 },   // centre left
+    { top: 50, left: 85 },  // centre right
+    { top: 85, left: 5 },   // lower left
+    { top: 85, left: 50 },  // bottom centre
+    { top: 85, left: 85 },  // lower right
+    { top: 25, left: 25 },  // upper-left mid
+    { top: 75, left: 75 }   // lower-right mid
+  ];
+
+  photoSources.forEach((src, index) => {
     const img = document.createElement('img');
     img.src = src;
     img.alt = '';
-    // Randomly place images in corners (top/bottom and left/right) so they don't cover the central card
-    const top = Math.random() < 0.5 ? randomRange(0, 20) : randomRange(70, 90);
-    const left = Math.random() < 0.5 ? randomRange(0, 20) : randomRange(70, 90);
-    // Random size with wider variation to create more size differences among polaroids
-    const size = randomRange(60, 200); // width and height between 60px and 200px
+    // Pick a base position for this photo based on its index
+    const base = basePositions[index % basePositions.length];
+    // Apply a small random offset to make the position feel natural
+    let top = base.top + randomRange(-5, 5);
+    let left = base.left + randomRange(-5, 5);
+    // Clamp values so images stay within the viewport (0–100%)
+    top = Math.max(0, Math.min(100, top));
+    left = Math.max(0, Math.min(100, left));
+    // Random size with a larger range; increase min and max so pictures aren't too tiny
+    const size = randomRange(80, 300); // width/height between 80px and 300px
     const opacity = randomRange(0.5, 1); // opacity between 0.5 and 1
     const rotation = randomRange(-15, 15); // rotation between -15 and 15 degrees
     img.style.top = `${top}%`;
