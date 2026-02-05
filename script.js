@@ -79,16 +79,18 @@ document.addEventListener('DOMContentLoaded', () => {
    * while spacing them more evenly around the perimeter.
    */
   const basePositions = [
-    { top: 5, left: 5 },    // upper left corner
-    { top: 5, left: 50 },   // top centre
-    { top: 5, left: 85 },   // upper right corner
-    { top: 50, left: 5 },   // centre left
-    { top: 50, left: 85 },  // centre right
-    { top: 85, left: 5 },   // lower left
-    { top: 85, left: 50 },  // bottom centre
-    { top: 85, left: 85 },  // lower right
-    { top: 25, left: 25 },  // upper-left mid
-    { top: 75, left: 75 }   // lower-right mid
+    // Distribute photo positions more evenly around the edges and corners.
+    // Each entry specifies a top and left percentage relative to the viewport.
+    { top: 5, left: 5 },    // top-left corner
+    { top: 15, left: 20 },  // near top-left, slightly inset
+    { top: 5, left: 80 },   // top-right corner
+    { top: 15, left: 70 },  // near top-right, slightly inset
+    { top: 80, left: 10 },  // bottom-left corner
+    { top: 70, left: 20 },  // near bottom-left
+    { top: 80, left: 85 },  // bottom-right corner
+    { top: 70, left: 75 },  // near bottom-right
+    { top: 50, left: 10 },  // mid-left (vertical centre but horizontal edge)
+    { top: 50, left: 85 }   // mid-right
   ];
 
   photoSources.forEach((src, index) => {
@@ -97,14 +99,14 @@ document.addEventListener('DOMContentLoaded', () => {
     img.alt = '';
     // Pick a base position for this photo based on its index
     const base = basePositions[index % basePositions.length];
-    // Apply a small random offset to make the position feel natural
-    let top = base.top + randomRange(-5, 5);
-    let left = base.left + randomRange(-5, 5);
+    // Apply a small random offset (±3%) to make the position feel natural without bunching
+    let top = base.top + randomRange(-3, 3);
+    let left = base.left + randomRange(-3, 3);
     // Clamp values so images stay within the viewport (0–100%)
     top = Math.max(0, Math.min(100, top));
     left = Math.max(0, Math.min(100, left));
     // Random size with a larger range; increase min and max so pictures aren't too tiny
-    const size = randomRange(80, 300); // width/height between 80px and 300px
+    const size = randomRange(100, 300); // width/height between 100px and 300px (increase min size)
     const opacity = randomRange(0.5, 1); // opacity between 0.5 and 1
     const rotation = randomRange(-15, 15); // rotation between -15 and 15 degrees
     img.style.top = `${top}%`;
