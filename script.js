@@ -58,7 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
     'images/photo1.jpg',
     'images/photo2.jpg',
     'images/photo3.jpg',
-    'images/photo4.jpg'
+    'images/photo4.jpg',
+    'images/photo5.jpg',
+    'images/photo6.jpg',
+    'images/photo7.jpg',
+    'images/photo8.jpg',
+    'images/photo9.jpg',
+    'images/photo10.jpg'
   ];
   // Utility function to generate a random number within a range
   const randomRange = (min, max) => Math.random() * (max - min) + min;
@@ -69,7 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Randomly place images in corners (top/bottom and left/right) so they don't cover the central card
     const top = Math.random() < 0.5 ? randomRange(0, 20) : randomRange(70, 90);
     const left = Math.random() < 0.5 ? randomRange(0, 20) : randomRange(70, 90);
-    const size = randomRange(80, 160); // width and height between 80px and 160px
+    // Random size with wider variation to create more size differences among polaroids
+    const size = randomRange(60, 200); // width and height between 60px and 200px
     const opacity = randomRange(0.5, 1); // opacity between 0.5 and 1
     const rotation = randomRange(-15, 15); // rotation between -15 and 15 degrees
     img.style.top = `${top}%`;
