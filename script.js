@@ -5,30 +5,44 @@ document.addEventListener('DOMContentLoaded', () => {
   const yesBtn = document.getElementById('yes-btn');
   const questionEl = document.querySelector('h1');
 
-  // Array of messages that will be shown each time the "No" button is clicked
+  // Array of messages that will be shown on the "No" button each time it's clicked.
+  // These mirror the playful prompts from the original project.
   const messages = [
     'Are you sure?',
     'Really sure? 🥺',
-    'Please say yes! 🥺',
-    "Don't break my heart 💔", // Escaped apostrophe to avoid HTML issues
-    'Okay fine, I give up... 😢'
+    'What if I asked really nicely?',
+    'Pretty please',
+    'With a chocolate rice cake on top',
+    'What about a matcha frostie',
+    'PLEASE POOKIE',
+    'But :*(',
+    'I am going to die',
+    'Yep I\'m dead',
+    "ok ur talking to nathan's ghost",
+    'please babe',
+    ':((((',
+    'PRETTY PLEASE',
+    'Estoy muerto',
+    'No :('
   ];
 
   let noCount = 0;
 
-  // Handler for the "No" button: update the question text and enlarge the Yes button
+  // Keep the original question constant. On each "No" click, change the "No" button's text
+  // and increase the "Yes" button's font size. This matches the behaviour from the original project.
   noBtn.addEventListener('click', () => {
+    // Cycle through the messages array for the "No" button label
     if (noCount < messages.length) {
-      questionEl.textContent = messages[noCount];
+      noBtn.textContent = messages[noCount];
+    } else {
+      // If we've exhausted all messages, keep using the last one
+      noBtn.textContent = messages[messages.length - 1];
     }
+    // Increase count for the next click
     noCount++;
-    // Increase the size of the Yes button incrementally
-    const scale = 1 + noCount * 0.15;
-    yesBtn.style.transform = `scale(${scale})`;
-    // Once all messages have been displayed, hide the No button
-    if (noCount >= messages.length) {
-      noBtn.style.display = 'none';
-    }
+    // Enlarge the "Yes" button by increasing its font size
+    const fontSize = noCount * 20 + 16; // start at 16px and add 20px per click
+    yesBtn.style.fontSize = `${fontSize}px`;
   });
 
   // Handler for the "Yes" button: redirect to the celebration page
