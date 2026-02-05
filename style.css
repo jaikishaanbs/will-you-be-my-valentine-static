@@ -10,6 +10,8 @@ body {
   /* Background placeholder. Replace background.jpg with your own image later */
   background: url('images/background.jpg') no-repeat center center fixed;
   background-size: cover;
+  /* Create a stacking context so absolutely positioned photos can align to the body */
+  position: relative;
 }
 
 .container {
@@ -18,6 +20,9 @@ body {
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  /* Elevate the central card above the photo layer */
+  position: relative;
+  z-index: 2;
 }
 
 .bear-img {
@@ -51,6 +56,25 @@ button:active {
 #yes-btn {
   background-color: #4caf50;
   color: #fff;
+}
+
+/* Polaroid photo container and images */
+.photo-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Allow clicks to fall through to the card */
+  z-index: 1;
+}
+
+.photo-container img {
+  position: absolute;
+  border: 8px solid #fff;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
 }
 
 #no-btn {
